@@ -18,6 +18,15 @@
         {
             color: black;
         }
+
+        .center
+        {
+          margin: auto;
+          width: 50%;
+          text-align: center;
+          margin-top: 30px;
+          border: 3px solid blanchedalmond;
+        }
     </style>
   </head>
   <body>
@@ -35,6 +44,7 @@
 
                 @if(session()->has('message'))
                     <div class="alert alert-success">
+                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">X</button>
                         {{ session()->get('message') }}
                     </div>
 
@@ -50,6 +60,23 @@
 
 
                 </div>
+
+                <table class="center">
+                  <tr>
+                    <td>Catagory Name</td>
+                    <td>Action</td>
+                  </tr>
+
+                  @foreach ($data as $data)
+                  <tr>
+
+
+                        <td>{{ $data->category_name }}</td>
+                        <td><a onclick="return confirm('Are You Confirm to delete this item??')" class="btn btn-danger" href="{{ route('delete_category',$data->id) }}">Delete</td>
+
+                  </tr>
+                  @endforeach
+                </table>
             </div>
         </div>
         <!-- main-panel ends -->
