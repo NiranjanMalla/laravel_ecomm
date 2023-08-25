@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\Models\Category;
+use App\Models\product;
 
 class AdminController extends Controller
 {
@@ -33,5 +34,48 @@ class AdminController extends Controller
         $data->delete();
 
         return redirect()->back()->with('message','Category has been deleted Successfully!!');
+    }
+
+    public function view_product()
+    {
+        $category = category::all();
+        return view('admin.product',compact('category'));
+    }
+
+    public function add_product(Request $request)
+    {
+        $product = new product;
+
+        $product -> title = $request -> title;
+            // title is the name of the product database table column name in database
+            // 2nd title is the word which we have given name inside the input field as name= "title"
+        $product -> description = $request -> description;
+        $product -> price = $request -> price;
+        $product -> quantity = $request -> quantity;
+        $product -> discount_price = $request -> dis_price;
+        $product -> category = $request -> category;
+
+        // for storing image  inside database is different than above:
+        $image=$request->image;
+            // above line is for storing image inside $image variable
+        $imagename=time().'.'.$image->getClientOriginalExtension();
+            //above $imagename is for giving the unique name  with time function.
+        $request->image->move('product',$imagename);
+            // MAKE A NEW FOLDER INSIDE THE public folder - MAKE NEW FOLDER WITH NAME "product"
+
+        $product -> image = $imagename;
+            // now the image will store inside the "product" folder which is inside public folder
+
+
+
+        $product->save();
+
+        return redirect()->back()->with('message','Product has been added Successfully!!');
+    }
+
+    public function show_product()
+    {
+        $product=product::all();
+        return view('admin.show_product',compact('product'));
     }
 }

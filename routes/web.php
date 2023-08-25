@@ -36,3 +36,9 @@ Route::middleware([
 Route::get('/view_category',[AdminController::class,'view_category'])->name('view_category');
 Route::post('/add_category',[AdminController::class,'add_category'])->name('add_category');
 Route::get('/delete_category/{id}',[AdminController::class,'delete_category'])->name('delete_category');
+
+
+Route::get('/view_product',[AdminController::class,'view_product'])->name('view_product');
+Route::post('/add_product',[AdminController::class,'add_product'])->name('add_product');
+
+Route::get('/show_product',[AdminController::class,'show_product'])->name('show_product');
