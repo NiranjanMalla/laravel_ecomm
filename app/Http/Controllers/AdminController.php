@@ -52,7 +52,7 @@ class AdminController extends Controller
         $product -> description = $request -> description;
         $product -> price = $request -> price;
         $product -> quantity = $request -> quantity;
-        $product -> discount_price = $request -> dis_price;
+        $product -> discount_price = $request -> des_price;
         $product -> category = $request -> category;
 
         // for storing image  inside database is different than above:
@@ -77,5 +77,54 @@ class AdminController extends Controller
     {
         $product=product::all();
         return view('admin.show_product',compact('product'));
+    }
+
+    public function product_delete($id)
+    {
+        $product=product::find($id);
+
+        $product->delete();
+
+        return redirect()->back()->with('message','Product has been Deleted Successfully!!');
+    }
+
+    public function product_update($id)
+    {
+        $product=product::find($id);
+
+        $category=category::all();
+
+        return view('admin.product_update',compact('product','category'));
+    }
+
+    public function product_update_confirm(Request $request,$id)
+    {
+        $product=product::find($id);
+
+        $product->title=$request->title;
+        $product -> description = $request -> description;
+        $product -> price = $request -> price;
+        $product -> quantity = $request -> quantity;
+        $product -> discount_price = $request -> des_price;
+        $product -> category = $request -> category;
+
+        // for storing image  inside database is different than above:
+            $image=$request->image;
+            // above line is for storing image inside $image variable
+            if($image)
+            {
+        $imagename=time().'.'.$image->getClientOriginalExtension();
+            //above $imagename is for giving the unique name  with time function.
+        $request->image->move('product',$imagename);
+            // MAKE A NEW FOLDER INSIDE THE public folder - MAKE NEW FOLDER WITH NAME "product"
+
+        $product -> image = $imagename;
+            // now the image will store inside the "product" folder which is inside public folder
+            }
+
+
+            $product->save();
+
+            return redirect()->back()->with('message','Product has been updated Successfully!!');
     }
 }

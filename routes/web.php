@@ -42,3 +42,8 @@ Route::get('/view_product',[AdminController::class,'view_product'])->name('view_
 Route::post('/add_product',[AdminController::class,'add_product'])->name('add_product');
 
 Route::get('/show_product',[AdminController::class,'show_product'])->name('show_product');
+
+Route::get('/product_delete/{id}',[AdminController::class,'product_delete'])->name('product_delete');
+
+Route::get('/product_update/{id}',[AdminController::class,'product_update'])->name('product_update');
+Route::post('/product_update_confirm/{id}',[AdminController::class,'product_update_confirm'])->name('product_update_confirm');

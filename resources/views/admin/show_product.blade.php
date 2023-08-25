@@ -54,18 +54,20 @@
                 <div class="div_center">
                     <h2 class="p-5">Show Product</h2>
 
+                    <div class="table-responsive">
                     <table class="table table-hover p-2">
-                  <tr>
-                    <td>Title</td>
-                    <td>Description</td>
-                    <td>Category</td>
-                    <td>Quantity</td>
-                    <td>price</td>
-                    <td>Discount Price</td>
-                    <td>image</td>
-                    <td>Action</td>
-                  </tr>
-                  @foreach ($product as $product)
+                        <tr>
+                            <td>Title</td>
+                            <td>Description</td>
+                            <td>Category</td>
+                            <td>Quantity</td>
+                            <td>price</td>
+                            <td>Discount Price</td>
+                            <td>image</td>
+                            <td>DELETE</td>
+                            <td>UPDATE</td>
+                        </tr>
+                @foreach ($product as $product)
 
 
                   <tr>
@@ -78,11 +80,17 @@
                     <td>
                         <img src="/product/{{ $product->image }}" alt="">
                     </td>
-                    <td>update</td>
+                    <td>
+                        <a class="btn btn-danger" href="{{ route('product_delete',$product->id) }}" onclick="return confirm('Are you sure to delete this item??')">delete</a>
+                    </td>
+                    <td>
+                        <a class="btn btn-success" href="{{ route('product_update',$product->id) }}">update</a>
+                    </td>
                   </tr>
 
                   @endforeach
                     </table>
+                </div>
                 </div>
                 </div>
             </div>
