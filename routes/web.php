@@ -47,3 +47,6 @@ Route::get('/product_delete/{id}',[AdminController::class,'product_delete'])->na
 
 Route::get('/product_update/{id}',[AdminController::class,'product_update'])->name('product_update');
 Route::post('/product_update_confirm/{id}',[AdminController::class,'product_update_confirm'])->name('product_update_confirm');
+
+Route::get('/product_detail/{id}',[HomeController::class,'product_detail'])->name('product_detail');
+

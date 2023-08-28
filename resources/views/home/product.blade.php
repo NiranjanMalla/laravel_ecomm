@@ -14,8 +14,8 @@
              <div class="box">
                 <div class="option_container">
                    <div class="options">
-                      <a href="" class="option1">
-                      Men's Shirt
+                      <a href="{{ route('product_detail',$products->id) }}" class="option1">
+                      Details
                       </a>
                       <a href="" class="option2">
                       Buy Now
