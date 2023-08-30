@@ -19,7 +19,7 @@ use App\Http\Controllers\AdminController;
 //     return view('welcome');
 // });
 
-Route::get('/',[HomeController::class,'index']);
+Route::get('/',[HomeController::class,'index'])->name('userpage');
 
 Route::get('/redirect',[HomeController::class, 'redirect']);
 
@@ -49,4 +49,6 @@ Route::get('/product_update/{id}',[AdminController::class,'product_update'])->na
 Route::post('/product_update_confirm/{id}',[AdminController::class,'product_update_confirm'])->name('product_update_confirm');
 
 Route::get('/product_detail/{id}',[HomeController::class,'product_detail'])->name('product_detail');
+
+Route::post('/add_cart/{id}',[HomeController::class,'add_cart'])->name('add_cart');
 

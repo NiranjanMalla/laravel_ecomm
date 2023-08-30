@@ -64,6 +64,8 @@
 
                    @endif
 
+                   <a href="" class="btn btn-success">Add to Cart</a>
+
                 </div>
              </div>
             {{-- <div class="box">
